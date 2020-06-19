@@ -1,0 +1,13 @@
+{
+    "name": "whoami",
+    "version": "1.0.0",
+    "description": "whoami",
+    "author": "Paul Lockaby <paul@paullockaby.com>",
+    "main": "server.js",
+    "scripts": {
+        "start": "node server.js"
+    },
+    "dependencies": {
+        "express": "^4.17.1"
+    }
+}

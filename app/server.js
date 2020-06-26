@@ -2,11 +2,12 @@
 
 const os = require("os");
 const express = require("express");
+const got = require("got");
 
 const PORT = 5000;
 const HOST = "0.0.0.0";
 
-const app = express()
+const app = express();
 const hostname = os.hostname();
 
 app.get("/", (req, res) => {
@@ -17,6 +18,24 @@ app.get("/", (req, res) => {
         hostname: hostname,
         headers: req.headers,
         environment: process.env
+    });
+});
+
+app.get("/fetch", (req, res) => {
+    var url = req.query.url;
+    console.log(`requesting url ${url}`);
+
+    got(url).then(success => {
+        res.json({
+            url: url,
+            response: success.body
+        });
+    }).catch(error => {
+        console.log(error);
+        res.json({
+            url: url,
+            response: error.body
+        });
     });
 });
 
